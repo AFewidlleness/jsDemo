@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style type="text/css">
+        .seconds{
+            height:50px;
+            background: #eee;
+            line-height: 50px;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 18px;
+            font-family: 微软雅黑;
+        }
+        .seconds span{
+            font-size: 23px;
+            font-weight: bold;
+            color: #f00;
+            margin: 0 5px 0 5px;
+        }
+        #btn{
+            width:100px;
+            height:35px;
+            border: 0;
+            background: #333;
+            color: #fff;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="seconds">
+        用户注册成功，页面<span id="seconds">3</span>秒后即将跳转...
+        <button id="btn">停止跳转</button>
+    </div>
+    
+</body>
+<script>
+    //获取值
+    seconds=document.getElementById("seconds");  
+    btn=document.getElementById("btn");
+    //点击按钮停止跳转
+    btn.onclick=function(){clearInterval(shenTime)};  
+    //赋初值
+    s=3;
+    shenTime=setInterval(function(){
+        //判断如果s=0就清除计时器并跳转
+        if(s==0)
+        {
+            //清除定时器并跳转
+            clearInterval(shenTime);
+            location="http:baidu.com";
+        }else{
+            seconds.innerHTML=--s;
+        }
+    },1000);
+</script>
+</html>
