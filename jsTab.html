@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        .jz{
+            width: 500px;
+            height: 500px;
+            border: 1px solid pink;
+            margin: 50px auto;
+        }
+        .jz-top{
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+        }
+        .jz-top span{
+            cursor: pointer;
+            height: 100%;
+            display: block;
+            float: left;
+            width: 25%;
+        }
+        .jz-bottom{
+            height: 450px;
+            overflow: hidden;
+        }
+        .jz-bottom ul{
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+        .jz-bottom ul li{
+            width: 100%;
+            display: none;
+            height: 100%;
+            background: pink;
+        }
+        .jz-bottom .bottomHov{
+            display: block;
+        }
+        .aHover{
+            background-color: pink;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="jz" id="jz">
+        <div class="jz-top">
+            <span class="aHover">体育</span>
+            <span>娱乐</span>
+            <span>新闻</span>
+            <span>综合</span>
+        </div>
+        <div class="jz-bottom">
+            <ul>
+                <li class="bottomHov">1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        var jz = document.getElementById('jz');
+        var divone = jz.getElementsByTagName('div')[0];
+        var divtwo = jz.getElementsByTagName('div')[1];
+        var span = divone.getElementsByTagName('span');
+        var li = divtwo.getElementsByTagName('li');
+        //循环遍历的方式，添加点击事件
+        for(var i=0;i<span.length;i++){
+            // 再点击之前就把索引保存在span标签中
+            span[i].setAttribute('index',i);
+            span[i].onclick = function() {
+                // 给所有span去掉class
+                for(var j=0;j<span.length;j++){
+                    span[j].removeAttribute('class');
+                }
+                // 给点击的span加上class
+                this.className='aHover';
+                // span被点击时候获取存储的索引值
+                var indexThis = this.getAttribute('index');
+                for(var k=0;k<li.length;k++){
+                    li[k].removeAttribute('class');
+                }
+                //根据保存的索引值添加class
+                li[indexThis].className='bottomHov';
+            }
+        }
+    </script>
+</body>
+</html>
